@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Prompt Chat GPT</title>
+</head>
+
+<body>
+  <header>
+    <img src="https://dajm.fr/images/DAJM-DARK.svg" alt="Logo light" class="logo logo-light desktop-logo">
+    <img src="https://dajm.fr/images/DAJM-LIGHT.svg" alt="Logo dark" class="logo logo-dark desktop-logo">
+    <img src="https://dajm.fr/images/DAJM-DARK-RESPONSIVE.svg" alt="Logo light" class="logo logo-light mobile-logo">
+    <img src="https://dajm.fr/images/DAJM-LIGHT-RESPONSIVE.svg" alt="Logo dark" class="logo logo-dark mobile-logo">
+    <label class="toggle-switch" for="toggle-theme">
+      <input type="checkbox" id="toggle-theme" checked>
+      <span class="toggle-slider round"></span>
+    </label>
+  </header>
+
+  <div class="container">
+    <h1>INFORMEZ, COPIEZ, COLLEZ DANS JM</h1>
+	<p>Renseignez les champs > Copiez le prompt dans JM > Copiez une des proposiions dans Midjourney.</p>
+	  
+ <form id="promptForm">
+     <div class="buttons-container">
+    <button type="submit" id="validate-button">Copier le prompt</button>
+    <button id="reset-button" type="button">Réinitialiser</button>
+     </div>
+    <form id="firstForm">
+      <div class="form-container">
+        <div class="input-group">
+          <label for="mission">1. Mission et sujet de l'article à illustrer </label>
+          <span class="subtitle">Finalité du visuel et explication du sujet à traiter</span>
+          <textarea id="mission"></textarea>
+        </div>
+		  
+	
+		  	<div class="input-group">
+        <label for="media-type">2. Format de visuel</label>
+        <span class="subtitle">Choisissez le format. A défaut ce sera 16:9</span>
+        <select id="media-type">
+		  <option value="" selected></option>
+            <option value="carré">Carré</option>
+            <option value="16-9">16:9</option>
+            <option value="9-16">9:16</option>
+			<option value="4-3">4:3</option>
+		    <option value="3-3">3:4</option>
+        </select>
+    </div>
+		  
+      </div>
+    <input type="hidden" id="constraints" value="Contraintes et restrictions: SI et uniquement SI la section &quot;4. Style de l&apos; image :&quot; n’est pas renseignée OU SI et uniquement SI la section &quot;4. Style de l&apos; image :&quot; contient les mots clés suivants : &quot;photographie, photography, photorealisme, photo-réalisme&quot;, tu commenceras chaque proposition par la focale qui te semble la plus adéquate en l&apos; écrivant sous le format (Shot on xx mm lenses), uniquement en suivant strictement les conditions sus indiquée. Pas de sensible que du concret. Sois hyper détaillé dans la description des lumières, des contraste, des couleurs, des effets de lumières, des ombres, de la composition, de l&apos; ambiance, de la tonalité. Ecris des phrases directes, courtes et percutantes pour faciliter la compréhension. Décris dans le moindre détail la composition de la photographie et de son contenu. Il faut que tu détailles un maximum pour le visuel puisse être compris et imaginez parfaitement par des personnes malvoyantes. Il faut que le descriptif soit concret, exact, parfait, pragmatique sans donner de ressenti. Tu ajouteras systématiquement en début de phrase la &quot;Source (url de la référence) :&quot; uniquement si une source est fournie. Sinon tu n’indiqueras pas de source. Tu dois intégrer une description parfaite du &quot;Style de l&apos; image&quot; attendu. Tu dois décrire avec précision pour le style attendu. A la fin tu du dois ajouter &quot;--ar xx:xx&quot; il s&apos; agit du format. A défaut de précision de la section &quot;2. Format de visuel&quot;,  défaut tu utilisera &quot;--ar 16:9&quot;. Le seul &quot;:&quot; autorisé est le &quot;:&quot; format &quot;xx:xx&quot;. Les propositions ne doivent comprendre aucun &quot;.&quot; sauf pour les sources. Ne pas finir par &quot;.&quot;. Tu devras respecter scrupuleusement chaque contrainte. Ecris en francais">
+
+    <input type="hidden" id="output" value="Output attendu: Composition d&apos; une seule phrase constitué d&apos; une concaténation des différentes sections séparé par une virgule &quot; ,&quot; . La concaténation aura pour structure URL indiquée dans &quot; 6. Source (url de la référence) :&quot;  (à défaut de saisie, l’information est masquée, ne mettre que l&apos; url sans &quot; Source:&quot; ), SI et uniquement SI la section &quot; 3. Style de l&apos; image :&quot;  n’est pas renseignée OU SI et uniquement SI la section &quot; 3. Style de l&apos; image :&quot;  contient les mots clés suivants : &quot; photographie, photography, photorealisme, photo-réalisme&quot;  renseigner &quot; Shot on xx mm lenses&quot;  tel que précisé dans &quot; 4. Contraintes et restrictions:&quot; ,  interprétation et description extrêmement détaillée du Style de l&apos; image attendu indiqué dans &quot; 3. Style de l&apos; image :&quot; , proposition créative de ChatGPT, rappel/report de &quot; Style de l&apos; image&quot; , Si et seulement SI &quot; 7. Artiste de référence&quot; est mentionné écris &quot; style by + information saisie à &quot; 7. Artiste de référence&quot;  (sinon de RIEN écrire); A la fin tu du dois ajouter &quot;--ar xx:xx&quot; il s&apos; agit du format. A défaut de précision de la section &quot;2. Format de visuel&quot;,  défaut tu utilisera &quot;--ar 16:9&quot;. Le seul &quot;:&quot; autorisé est le &quot;:&quot; format &quot;xx:xx&quot; --ar xx:xx&quot; 
+">
+	</form>
+
+  <form id="secondForm">
+      <div class="form-container">
+		  	<div class="input-group">
+        <label for="media-type">3. Type de media</label>
+        <span class="subtitle">Choisissez le type de media. Par défaut, JM fera des propositions</span>
+        <select id="media-type">
+		  <option value="" selected></option>
+            <option value="Photographie">Photographie</option>
+            <option value="Illustration">Illustration</option>
+            <option value="Composite">Composite</option>
+        </select>
+    </div>
+        <div class="input-group">
+          <label for="style">4. Style de l'image</label>
+          <span class="subtitle">Saisie manuelle du style pour aider JM à produire les bons contenus. Par défaut réglé sur photographie.</span>
+          <textarea id="style"></textarea>
+        </div>
+		  
+	 
+      </div>
+	  
+ </form>
+
+	  
+ <form id="thirdForm">
+      <div class="form-container">
+        <div class="input-group">
+          <label for="suggestions">5. Suggestions ou exigences</label>
+          <span class="subtitle">Indiquez ce qui est absolument attendu (ex. il faut que l’ambiance joyeuse)</span>
+          <textarea id="suggestions"></textarea>
+        </div>
+		  
+		   <div class="input-group">
+          <label for="source">6. Source (url de la référence)</label>
+          <span class="subtitle">Indiquez l'URL d'une image de référence (facultatif)</span>
+          <textarea id="source"></textarea>
+        </div>
+      </div>
+ </form>
+	  
+	   <form id="fourthForm">
+      <div class="form-container">
+        <div class="input-group">
+          <label for="artiste">7. Artiste de référence</label>
+          <span class="subtitle">Indiquez un artiste (facultatif)</span>
+          <textarea id="artiste"></textarea>
+        </div>
+		  
+		   <div class="input-group">
+          <label for="nombre">8. Nombre de Propositions</label>
+          <span class="subtitle">Indiquez le nombre de propositions souhaitez</span>
+          <textarea id="nombre"></textarea>
+        </div>
+      </div>
+ 		</form>
+	 </form>
+	  
+      <div class="banner" hidden>J'ai bien copié le prompt dans le presse-papier.</div>
+
+
+  <script src="script.js"></script>
+  <script>
+    function autoResizeTextArea() {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight) + 'px';
+    }
+
+    let textAreas = document.querySelectorAll('textarea');
+    textAreas.forEach(textArea => {
+      textArea.addEventListener('input', autoResizeTextArea);
+    });
+  </script>
+</body>
+</html>
